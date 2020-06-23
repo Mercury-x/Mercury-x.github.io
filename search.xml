@@ -4,13 +4,46 @@
   
     
     <entry>
-      <title>my new blog (test)</title>
-      <link href="/2020/06/23/my-new-blog-test/"/>
-      <url>/2020/06/23/my-new-blog-test/</url>
+      <title>js高级编程chapter5</title>
+      <link href="/2020/06/23/js%E9%AB%98%E7%BA%A7%E7%BC%96%E7%A8%8Bchapter5/"/>
+      <url>/2020/06/23/js%E9%AB%98%E7%BA%A7%E7%BC%96%E7%A8%8Bchapter5/</url>
       
-        <content type="html"><![CDATA[]]></content>
+        <content type="html"><![CDATA[<h1 id="chapter-5"><a href="#chapter-5" class="headerlink" title="chapter 5"></a>chapter 5</h1><h2 id="5-5-Function类型"><a href="#5-5-Function类型" class="headerlink" title="5.5 Function类型"></a>5.5 Function类型</h2><p><em>未完待续</em></p><p>函数实际上是<code>对象</code>,每个函数都是Function类型的实例，因此与其他引用类型一样具有<code>属性和方法</code></p><p>因此函数名实际上就是函数对象的<code>指针</code>，不会与某个函数绑定</p><pre><code class="javascript">    //因此函数可以这么定义    // 可以用来理解 函数是对象，函数名是指针    // 但是不推荐这么定义函数    const myFun = new Function(&#39;num1&#39;, &#39;num2&#39;, &#39;return num1 + num2&#39;);    // 一个函数可以有多个名字    funtion age() {        console.log(&#39;my age is 19&#39;);    }    const myAge = age;    myAge();  // 19    age();    // 19</code></pre><h3 id="5-5-1-没有重载（深入理解）"><a href="#5-5-1-没有重载（深入理解）" class="headerlink" title="5.5.1 没有重载（深入理解）"></a>5.5.1 没有重载（深入理解）</h3><ol><li>把函数名现象做指针，可以帮助理解为何没有重载</li><li>重复声明两个同名函数只会覆盖前一个的引用</li></ol><h3 id="5-5-2-函数声明与函数表达式"><a href="#5-5-2-函数声明与函数表达式" class="headerlink" title="5.5.2 函数声明与函数表达式"></a>5.5.2 函数声明与函数表达式</h3><p>解析器在向执行环境中加载数据时，会率先读取函数声明，并使其在执行任何函数代码前可用。即<code>函数声明提升</code></p><h3 id="5-5-3-作为值的函数"><a href="#5-5-3-作为值的函数" class="headerlink" title="5.5.3 作为值的函数"></a>5.5.3 作为值的函数</h3><p>因为函数名本就是一个变量，所以可以将函数作为另一个函数的结合返回<br><code>要访问函数的指针而不执行函数的话</code>，必须去掉大括号</p><pre><code class="javascript">    // sort示例    function compare() {        return function(object1, object2) {            const value1 = object1[propertyName];            const value2 = object2[propertyName];            if (value1 &lt; value2) {                return -1;            } else if (value1 &gt; value2) {                return 1;            } else {                return 0;            }        }    }    // 调用    const data = [        {            name: &#39;azoux1&#39;,            age； 19,        },        {            name: &#39;azoux2&#39;,            age； 190,        },    ];    data.sort(compare, &#39;name&#39;); // 按name排序    data.sort(compare, &#39;age&#39;);  // 按age排序</code></pre><h3 id="5-5-4函数内部属性"><a href="#5-5-4函数内部属性" class="headerlink" title="5.5.4函数内部属性"></a>5.5.4函数内部属性</h3><ul><li>两个特殊的对象<ul><li>this</li><li>arguments – 保存函数参数<ul><li><code>callee属性</code> – 指向拥有这个arguments对象的函数</li></ul></li></ul></li></ul><pre><code class="javascript">    // 使用callee实现阶乘递归 降低耦合    function factorial(num) {        if (num &lt; 2) {            return 1;        } else {            return num * arguments.callee(num - 1);        }    }</code></pre><p><em>【松耦合】的方法，一般是底层函数，功能尽量单一，尽量避免修改底层函数。功能相近的函数，可以设计2个以上，不要为了减少代码量，把一个函数的功能设计的太多</em></p><h3 id="5-5-5-函数属性的方法"><a href="#5-5-5-函数属性的方法" class="headerlink" title="5.5.5 函数属性的方法"></a>5.5.5 函数属性的方法</h3><pre><code>每个函数包含两个属性：length和property。其中length是希望接受的参数个数property是保存所有的实例方法，诸如toString()等...在es5中property的属性是不可以枚举的（for-in无效）</code></pre><p><em>call()和apply()真正的用武之地不在于传递参数，而是扩充函数赖以运行的作用域</em></p><pre><code class="javascript">    // 举个例子    window.color = &#39;red&#39;;    window.age = 10;    o = {        color: &#39;blue&#39;,    };    function showColor() {        console.log(this.color);        console.log(this.age);    }    showColor(); // red    // red 是因为当前调用showColor的是window对象    showColor.call(o) //blue    // call() 扩充了作用域 它会在o对象中寻找color属性，如果没有就是undefined</code></pre><p><em>apply与call相似，只是传入其余参数的方式不同</em><br><em>扩充作用域的最大好处就是对象不需要和方法有任何*</em>耦合关系***</p><p><em>bind()</em></p><pre><code>bind顾名思义就是绑定，在绑定完传入的对象之后返回一个新的函数</code></pre>]]></content>
       
       
+      
+        <tags>
+            
+            <tag> javascript </tag>
+            
+            <tag> 前端 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>learning how to learn(1)</title>
+      <link href="/2020/06/23/learning-how-to-learn-1/"/>
+      <url>/2020/06/23/learning-how-to-learn-1/</url>
+      
+        <content type="html"><![CDATA[<h1 id="week1"><a href="#week1" class="headerlink" title="week1"></a>week1</h1><p><em>这是我学习 <strong>learning how to learn</strong> 的总结笔记</em></p><hr><h2 id="集中与发散思维概论"><a href="#集中与发散思维概论" class="headerlink" title="集中与发散思维概论"></a>集中与发散思维概论</h2><p><em>当我们学习新事物时 *</em>比喻和类比都是有效的方法***</p><p><code>集中思维</code></p><pre><code>当我们解决问题或者理解新的概念的时候当你一心一意的专注于某些东西上 试着去学习或者去理解它们的时候 就是“专注” </code></pre><p><code>发散思维</code></p><pre><code>当我们需要一些新的想法的时候，就要依靠发散思维</code></pre><hr><h2 id="拖延症、记忆与睡眠"><a href="#拖延症、记忆与睡眠" class="headerlink" title="拖延症、记忆与睡眠"></a>拖延症、记忆与睡眠</h2><h3 id="拖延症简介"><a href="#拖延症简介" class="headerlink" title="拖延症简介"></a>拖延症简介</h3><p>拖延症：当我们看到一件我们极不情愿的事情时，就像激活了我们大脑的痛觉开关，大脑就会自然而然地去寻找停止这种负面刺激的方式 而这一方式便是将你的注意力转移到其他事情上 不过 我们也有应对之法 研究人员发现 <strong>当人们真正开始去做他们不喜欢的事情后 这种神经上的不适很快就会消失</strong> 看起来 你拖延的过程大概是这样的 首先 你留意到某件事且得到暗示说 这件事可能会让你产生轻微的不安 你不喜欢这种不适 因此为了消除这种感觉 你会让自己不再去关注这件让你不安的事.你会转而去做一些更让人愉悦的事情 这么做的结果就是你觉得更开心了 但这只是暂时的 。</p><p>有一个小技巧来克服拖延症就是使用<strong>番茄钟</strong>。</p><p>一个番茄钟25分钟，在这25分钟内集中注意力去做一件事情，然后休息五分钟，起来转转，喝喝水，浏览浏览网页，给自己一点<strong>奖励</strong>。</p><hr><h3 id="实践使记忆永存"><a href="#实践使记忆永存" class="headerlink" title="实践使记忆永存"></a>实践使记忆永存</h3><p>纵观不同职业，那些涉及到数学与科学的会更有挑战性一些。这可能与<strong>概念的抽象性</strong>有关。正如我们学习英语，学到单词cow（奶牛），我们可以直接在牧场里看到奶牛，就有了抽象单词的具体化。但是在数学里，加减乘除等等都是抽象的概念，我们没有办法在现实生活中找到一种实物来对比。这意味着<strong>练习在数学与科学中学到的概念非常重要</strong>，它将帮你提高和增强学习过程中神经元的连接。这些概念或许是抽象的，但是你在大脑中创建的神经思维模式是具体存在的，练习和实践可以加强神经元之间的连接。越是抽象的东西就越是要注重练习。</p><p>学习的时候做的事情，应当是一心一意地专注， 拼命学习它，<strong>然后休息一下，或者转移你的注意力</strong>。在这段表面上是放松的时间里，你大脑的发散模式，则有机会在后台工作，帮你完成对概念的理解。从某种意义上说，你的神经通路就可以像砂浆一样有个得到固化的机会。如果你不这么做，而是进行填鸭式学习，你的知识库看起来将更像这样 到处杂乱不堪，基础也不牢靠。</p><hr><h3 id="记忆概论"><a href="#记忆概论" class="headerlink" title="记忆概论"></a>记忆概论</h3><p><code>记忆分为两种，分别为工作记忆和长期记忆</code></p><p>我们可以说短期记忆是一个<strong>低效的精神黑板</strong>,而其他的记忆形式呢。长期记忆就像一个存储仓库 就像我们所知道的仓库一样 它占据了一大片区域 </p><p>不同类别的长期记忆储存在大脑不同的区域，研究显示在你第一次尝试 把一个信息放进长期记忆区域，你需要重复记忆它至少几次，才可以增加当你以后需要它的时候想起来的几率。</p><p>重复的记忆可以将短期记忆提升为长期记忆，但是也绝不是短时间内的不断重复，毕竟一口吃不成一个胖子。你需要给他时间冷却。如果不给突触连接形成和加强的时候 你将无法获得好的记忆结构</p><hr><h3 id="睡眠在学习中的重要性"><a href="#睡眠在学习中的重要性" class="headerlink" title="睡眠在学习中的重要性"></a>睡眠在学习中的重要性</h3><p><code>非睡眠时大脑会产生毒物，而睡眠正是排出这些毒物的时候</code>，因为睡眠时脑细胞会缩小，增加脑内细胞之间的距离，液体会在缝隙中冲走那些<code>毒物</code></p><pre><code>在睡眠不足的情况下参加考试 意味着你的大脑一直处于工作状态 以致少量代谢毒素残留在大脑之中 而这些有毒物质会让你思维混乱 这就好像你尝试驾驶一辆油缸里混着糖粒的汽车 它们是不能正常工作的 事实上 少睡一点不止会让你在考试中发挥失常 长时间的睡眠不足 更会产生各种不好的副作用 比如头痛 抑郁症 心脏疾病 糖尿病 或 缩短寿命</code></pre><p><strong>在睡觉的时候 你的大脑会将你学习和思考过的想法以及概念进行整理 它会清除掉一些记忆中不太重要的部分 同时增强你需要或想要记住的区域的记忆</strong></p><p>在你睡着的时候，大脑会在脑中不断将你学习和思考过的想法以及概念进行整理，它会清楚一些记忆中不重要的部分，同时增强你需要或想要记住区域的记忆</p><pre><code>你首先必须通过做集中精力状态下的工作 在脑中搭建发散思维模型 如果你复习你正在学习的内容 在你打个小盹或晚上睡觉之前 你会有更大的机率梦见这些内容 若你更进一步 告诉自己你“想要”梦到这些内容的话 梦见它的机率会更大提升 梦见你的学习从本质上能够增强你对内容的理解能力 在一定程度上 它可以将你的记忆整合成更易被掌握的组块信息</code></pre><hr><h3 id="教授访谈"><a href="#教授访谈" class="headerlink" title="教授访谈"></a>教授访谈</h3><ul><li>学习完全陌生的事物时，通过实践对我来说比阅读文献来的有用</li><li>听不感兴趣的讲座的时候，通过给演讲者埋伏问题，由此引发出的讨论会更有趣</li><li>运动的时候跟容易进入发散思维</li><li>你无法头脑清晰地同时做两件事，两件事之间切换工作节奏也是需要时间的</li><li>我们需要充足的锻炼</li><li>处于一个富有创造力的环境中可以帮助自己学习创新、</li><li>聪明人并不一定会成功，人生中的成功多半来自于激情和努力 坚持到底 坚持研究、工作 不放弃 不要放弃</li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> learning </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> learning how to learn </tag>
+            
+        </tags>
       
     </entry>
     
