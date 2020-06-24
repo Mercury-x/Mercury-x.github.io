@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="javascript,前端," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/jieni.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="chapter 55.5 Function类型未完待续 函数实际上是对象,每个函数都是Function类型的实例，因此与其他引用类型一样具有属性和方法 因此函数名实际上就是函数对象的指针，不会与某个函数绑定     &#x2F;&#x2F;因此函数可以这么定义     &#x2F;&#x2F; 可以用来理解 函数是对象，函数名是指针     &#x2F;&#x2F; 但是不推荐这么定义函数     const myFun &#x3D; new Function(&amp;#">
+<meta property="og:type" content="article">
+<meta property="og:title" content="js高级编程chapter5">
+<meta property="og:url" content="http://yoursite.com/2020/06/23/js%E9%AB%98%E7%BA%A7%E7%BC%96%E7%A8%8Bchapter5/index.html">
+<meta property="og:site_name" content="azoux">
+<meta property="og:description" content="chapter 55.5 Function类型未完待续 函数实际上是对象,每个函数都是Function类型的实例，因此与其他引用类型一样具有属性和方法 因此函数名实际上就是函数对象的指针，不会与某个函数绑定     &#x2F;&#x2F;因此函数可以这么定义     &#x2F;&#x2F; 可以用来理解 函数是对象，函数名是指针     &#x2F;&#x2F; 但是不推荐这么定义函数     const myFun &#x3D; new Function(&amp;#">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-06-23T14:22:05.000Z">
+<meta property="article:modified_time" content="2020-06-24T08:40:46.860Z">
+<meta property="article:author" content="azoux">
+<meta property="article:tag" content="javascript">
+<meta property="article:tag" content="前端">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"always","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/06/23/js高级编程chapter5/"/>
+
+
+
+
+
+  <title>js高级编程chapter5 | azoux</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">azoux</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">azoux's blog</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/23/js%E9%AB%98%E7%BA%A7%E7%BC%96%E7%A8%8Bchapter5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="azoux">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/images.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="azoux">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">js高级编程chapter5</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-06-23T22:22:05+08:00">
+                2020-06-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="chapter-5"><a href="#chapter-5" class="headerlink" title="chapter 5"></a>chapter 5</h1><h2 id="5-5-Function类型"><a href="#5-5-Function类型" class="headerlink" title="5.5 Function类型"></a>5.5 Function类型</h2><p><em>未完待续</em></p>
+<p>函数实际上是<code>对象</code>,每个函数都是Function类型的实例，因此与其他引用类型一样具有<code>属性和方法</code></p>
+<p>因此函数名实际上就是函数对象的<code>指针</code>，不会与某个函数绑定</p>
+<pre><code class="javascript">    //因此函数可以这么定义
+    // 可以用来理解 函数是对象，函数名是指针
+    // 但是不推荐这么定义函数
+    const myFun = new Function(&#39;num1&#39;, &#39;num2&#39;, &#39;return num1 + num2&#39;);
+
+    // 一个函数可以有多个名字
+    funtion age() {
+        console.log(&#39;my age is 19&#39;);
+    }
+
+    const myAge = age;
+    myAge();  // 19
+    age();    // 19</code></pre>
+<h3 id="5-5-1-没有重载（深入理解）"><a href="#5-5-1-没有重载（深入理解）" class="headerlink" title="5.5.1 没有重载（深入理解）"></a>5.5.1 没有重载（深入理解）</h3><ol>
+<li>把函数名现象做指针，可以帮助理解为何没有重载</li>
+<li>重复声明两个同名函数只会覆盖前一个的引用</li>
+</ol>
+<h3 id="5-5-2-函数声明与函数表达式"><a href="#5-5-2-函数声明与函数表达式" class="headerlink" title="5.5.2 函数声明与函数表达式"></a>5.5.2 函数声明与函数表达式</h3><p>解析器在向执行环境中加载数据时，会率先读取函数声明，并使其在执行任何函数代码前可用。即<code>函数声明提升</code></p>
+<h3 id="5-5-3-作为值的函数"><a href="#5-5-3-作为值的函数" class="headerlink" title="5.5.3 作为值的函数"></a>5.5.3 作为值的函数</h3><p>因为函数名本就是一个变量，所以可以将函数作为另一个函数的结合返回<br><code>要访问函数的指针而不执行函数的话</code>，必须去掉大括号</p>
+<pre><code class="javascript">
+    // sort示例
+    function compare() {
+        return function(object1, object2) {
+            const value1 = object1[propertyName];
+            const value2 = object2[propertyName];
+
+            if (value1 &lt; value2) {
+                return -1;
+            } else if (value1 &gt; value2) {
+                return 1;
+            } else {
+                return 0;
+            }
+        }
+    }
+    // 调用
+    const data = [
+        {
+            name: &#39;azoux1&#39;,
+            age； 19,
+        },
+        {
+            name: &#39;azoux2&#39;,
+            age； 190,
+        },
+    ];
+    data.sort(compare, &#39;name&#39;); // 按name排序
+    data.sort(compare, &#39;age&#39;);  // 按age排序
+</code></pre>
+<h3 id="5-5-4函数内部属性"><a href="#5-5-4函数内部属性" class="headerlink" title="5.5.4函数内部属性"></a>5.5.4函数内部属性</h3><ul>
+<li>两个特殊的对象<ul>
+<li>this</li>
+<li>arguments – 保存函数参数<ul>
+<li><code>callee属性</code> – 指向拥有这个arguments对象的函数</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<pre><code class="javascript">    // 使用callee实现阶乘递归 降低耦合
+    function factorial(num) {
+        if (num &lt; 2) {
+            return 1;
+        } else {
+            return num * arguments.callee(num - 1);
+        }
+    }</code></pre>
+<p><em>【松耦合】的方法，一般是底层函数，功能尽量单一，尽量避免修改底层函数。功能相近的函数，可以设计2个以上，不要为了减少代码量，把一个函数的功能设计的太多</em></p>
+<h3 id="5-5-5-函数属性的方法"><a href="#5-5-5-函数属性的方法" class="headerlink" title="5.5.5 函数属性的方法"></a>5.5.5 函数属性的方法</h3><pre><code>每个函数包含两个属性：length和property。
+其中length是希望接受的参数个数
+property是保存所有的实例方法，诸如toString()等...
+在es5中property的属性是不可以枚举的（for-in无效）</code></pre><p><em>call()和apply()真正的用武之地不在于传递参数，而是扩充函数赖以运行的作用域</em></p>
+<pre><code class="javascript">    // 举个例子
+    window.color = &#39;red&#39;;
+    window.age = 10;
+    o = {
+        color: &#39;blue&#39;,
+    };
+
+    function showColor() {
+        console.log(this.color);
+        console.log(this.age);
+    }
+
+    showColor(); // red
+    // red 是因为当前调用showColor的是window对象
+
+    showColor.call(o) //blue
+    // call() 扩充了作用域 它会在o对象中寻找color属性，如果没有就是undefined</code></pre>
+<p><em>apply与call相似，只是传入其余参数的方式不同</em><br><em>扩充作用域的最大好处就是对象不需要和方法有任何*</em>耦合关系***</p>
+<p><em>bind()</em></p>
+<pre><code>bind顾名思义就是绑定，在绑定完传入的对象之后返回一个新的函数</code></pre>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/javascript/" rel="tag"># javascript</a>
+          
+            <a href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag"># 前端</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/06/23/learning-how-to-learn-1/" rel="next" title="learning how to learn(1)">
+                <i class="fa fa-chevron-left"></i> learning how to learn(1)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/images.jpg"
+               alt="azoux" />
+          <p class="site-author-name" itemprop="name">azoux</p>
+           
+              <p class="site-description motion-element" itemprop="description">share all I learn</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">categories</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#chapter-5"><span class="nav-text">chapter 5</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#5-5-Function类型"><span class="nav-text">5.5 Function类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-5-1-没有重载（深入理解）"><span class="nav-text">5.5.1 没有重载（深入理解）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-5-2-函数声明与函数表达式"><span class="nav-text">5.5.2 函数声明与函数表达式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-5-3-作为值的函数"><span class="nav-text">5.5.3 作为值的函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-5-4函数内部属性"><span class="nav-text">5.5.4函数内部属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-5-5-函数属性的方法"><span class="nav-text">5.5.5 函数属性的方法</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=450 src="//music.163.com/outchain/player?type=0&id=5078906535&auto=1&height=430"></iframe>
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">azoux</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io" target="_blank" rel="noopener">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next" target="_blank" rel="noopener">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
