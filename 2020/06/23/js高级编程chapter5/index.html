@@ -112,15 +112,15 @@
 
 
 
-<meta name="description" content="chapter 55.5 Function类型未完待续 函数实际上是对象,每个函数都是Function类型的实例，因此与其他引用类型一样具有属性和方法 因此函数名实际上就是函数对象的指针，不会与某个函数绑定     &#x2F;&#x2F;因此函数可以这么定义     &#x2F;&#x2F; 可以用来理解 函数是对象，函数名是指针     &#x2F;&#x2F; 但是不推荐这么定义函数     const myFun &#x3D; new Function(&amp;#">
+<meta name="description" content="chapter 55.5 Function类型更新5.6 函数实际上是对象,每个函数都是Function类型的实例，因此与其他引用类型一样具有属性和方法 因此函数名实际上就是函数对象的指针，不会与某个函数绑定     &#x2F;&#x2F;因此函数可以这么定义     &#x2F;&#x2F; 可以用来理解 函数是对象，函数名是指针     &#x2F;&#x2F; 但是不推荐这么定义函数     const myFun &#x3D; new Function(&amp;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="js高级编程chapter5">
 <meta property="og:url" content="http://yoursite.com/2020/06/23/js%E9%AB%98%E7%BA%A7%E7%BC%96%E7%A8%8Bchapter5/index.html">
 <meta property="og:site_name" content="azoux">
-<meta property="og:description" content="chapter 55.5 Function类型未完待续 函数实际上是对象,每个函数都是Function类型的实例，因此与其他引用类型一样具有属性和方法 因此函数名实际上就是函数对象的指针，不会与某个函数绑定     &#x2F;&#x2F;因此函数可以这么定义     &#x2F;&#x2F; 可以用来理解 函数是对象，函数名是指针     &#x2F;&#x2F; 但是不推荐这么定义函数     const myFun &#x3D; new Function(&amp;#">
+<meta property="og:description" content="chapter 55.5 Function类型更新5.6 函数实际上是对象,每个函数都是Function类型的实例，因此与其他引用类型一样具有属性和方法 因此函数名实际上就是函数对象的指针，不会与某个函数绑定     &#x2F;&#x2F;因此函数可以这么定义     &#x2F;&#x2F; 可以用来理解 函数是对象，函数名是指针     &#x2F;&#x2F; 但是不推荐这么定义函数     const myFun &#x3D; new Function(&amp;">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-06-23T14:22:05.000Z">
-<meta property="article:modified_time" content="2020-06-24T08:40:46.860Z">
+<meta property="article:modified_time" content="2020-06-25T04:12:23.439Z">
 <meta property="article:author" content="azoux">
 <meta property="article:tag" content="javascript">
 <meta property="article:tag" content="前端">
@@ -364,7 +364,7 @@
       
 
       
-        <h1 id="chapter-5"><a href="#chapter-5" class="headerlink" title="chapter 5"></a>chapter 5</h1><h2 id="5-5-Function类型"><a href="#5-5-Function类型" class="headerlink" title="5.5 Function类型"></a>5.5 Function类型</h2><p><em>未完待续</em></p>
+        <h1 id="chapter-5"><a href="#chapter-5" class="headerlink" title="chapter 5"></a>chapter 5</h1><h2 id="5-5-Function类型"><a href="#5-5-Function类型" class="headerlink" title="5.5 Function类型"></a>5.5 Function类型</h2><p><em>更新5.6</em></p>
 <p>函数实际上是<code>对象</code>,每个函数都是Function类型的实例，因此与其他引用类型一样具有<code>属性和方法</code></p>
 <p>因此函数名实际上就是函数对象的<code>指针</code>，不会与某个函数绑定</p>
 <pre><code class="javascript">    //因此函数可以这么定义
@@ -435,10 +435,10 @@
         }
     }</code></pre>
 <p><em>【松耦合】的方法，一般是底层函数，功能尽量单一，尽量避免修改底层函数。功能相近的函数，可以设计2个以上，不要为了减少代码量，把一个函数的功能设计的太多</em></p>
-<h3 id="5-5-5-函数属性的方法"><a href="#5-5-5-函数属性的方法" class="headerlink" title="5.5.5 函数属性的方法"></a>5.5.5 函数属性的方法</h3><pre><code>每个函数包含两个属性：length和property。
-其中length是希望接受的参数个数
-property是保存所有的实例方法，诸如toString()等...
-在es5中property的属性是不可以枚举的（for-in无效）</code></pre><p><em>call()和apply()真正的用武之地不在于传递参数，而是扩充函数赖以运行的作用域</em></p>
+<h3 id="5-5-5-函数属性的方法"><a href="#5-5-5-函数属性的方法" class="headerlink" title="5.5.5 函数属性的方法"></a>5.5.5 函数属性的方法</h3><pre><code>    每个函数包含两个属性：length和property。
+    其中length是希望接受的参数个数
+    property是保存所有的实例方法，诸如toString()等...
+    在es5中property的属性是不可以枚举的（for-in无效）</code></pre><p><em>call()和apply()真正的用武之地不在于传递参数，而是扩充函数赖以运行的作用域</em></p>
 <pre><code class="javascript">    // 举个例子
     window.color = &#39;red&#39;;
     window.age = 10;
@@ -458,7 +458,154 @@ property是保存所有的实例方法，诸如toString()等...
     // call() 扩充了作用域 它会在o对象中寻找color属性，如果没有就是undefined</code></pre>
 <p><em>apply与call相似，只是传入其余参数的方式不同</em><br><em>扩充作用域的最大好处就是对象不需要和方法有任何*</em>耦合关系***</p>
 <p><em>bind()</em></p>
-<pre><code>bind顾名思义就是绑定，在绑定完传入的对象之后返回一个新的函数</code></pre>
+<pre><code>    bind顾名思义就是绑定，在绑定完传入的对象之后返回一个新的函数</code></pre><hr>
+<h2 id="5-6-基本包装类型"><a href="#5-6-基本包装类型" class="headerlink" title="5.6 基本包装类型"></a>5.6 基本包装类型</h2><p>ECMAScript提供了三个特殊的引用类型： <code>Bolean, Number, String</code><br>每当读取一个基本类型值的时候，后台就会创建一个对应的基本包装类型的对象<br><em>这就是为何我们可以对字符串或者数字使用一些方法</em></p>
+<pre><code class="JavaScript">    const str1 = &#39;hello woeld&#39;;
+    const str2 = str.substring(2);</code></pre>
+<p>当处理上面代码访问str1时，访问过程处于一种读取模式，也就是要从内存中读取这个字符串的值，而在读取模式访问字符串的时候，后台都会自动完成如下操作:</p>
+<ol>
+<li>创建String类型的一个实例</li>
+<li>在实例上调用制定的方法</li>
+<li>销毁这个实例</li>
+</ol>
+<pre><code class="javascript">        // 上面三步用代码描述的话,就是这样
+        const str1 = new String(&#39;some text&#39;);
+        const str2 = str1.substring(2);
+        s1 = null;</code></pre>
+<p>引用类型与基本包装类型的主要区别就是对象的生存期。<strong>使用new创建的引用类型的实例，在执行流离开当前作用域之前一直都保存在内存中。而自动创建的基本包装类型对象，则只存在于一行代码的执行瞬间，然后立即被销毁。</strong> </p>
+<pre><code class="javascript">
+        //可以看一下这个例子
+        const str = &#39;some text&#39;;
+        s1.color = &#39;red&#39;;
+        console.log(s1.color); // undefined
+</code></pre>
+<p><em>这里s1.color是undefined的原因是，在执行第三行代码之前，第二行创建的string对象已经被销毁了，第三行重新创建String对象，但是没有color属性，所以是undefined</em></p>
+<p> <strong>tips:</strong> 要注意的是，使用new调用的基本包装类型的构造函数，与直接调用同名转型函数是不一样的</p>
+<pre><code class="javascript">
+    const val = &#39;22;
+    const number = Number(val); // 转型函数
+    console.log(typeof val); // number
+
+    const obj = new Number(val); // 构造函数
+    console.log(typeof obj); // object
+</code></pre>
+<p><em>不建议直接创建基本包装类型的对象</em></p>
+<hr>
+<h3 id="5-6-1-Boolean"><a href="#5-6-1-Boolean" class="headerlink" title="5.6.1 Boolean"></a>5.6.1 Boolean</h3><p>建议永远不要使用Boolean对象</p>
+<hr>
+<h3 id="5-6-2-Number-类型"><a href="#5-6-2-Number-类型" class="headerlink" title="5.6.2 Number 类型"></a>5.6.2 Number 类型</h3><ol>
+<li>toString()</li>
+</ol>
+<pre><code class="javascript">
+    // toString()方法接受一个参数用于输出几进制的字符串形式
+    const num = 10;
+    console.log(num.toString(10)); // ’10‘
+    console.log(num.toString(2)); // &#39;1010&#39;
+    console.log(num.roString(16)); // &#39;a&#39;
+</code></pre>
+<ol start="2">
+<li>toFixed()<br> <code>接受一个参数，返回指定位数的小数位字符串</code></li>
+</ol>
+<pre><code class="javascript">
+    const num = 10;
+    num.toFixed(2); // &#39;10.00&#39;
+</code></pre>
+<ol start="3">
+<li>toExponential()<br> <code>返回指数形式字符串，同样接受一位小数为用于指定输出结果的小数位数</code></li>
+</ol>
+<pre><code class="javascript">
+    const num = 10;
+    num.toExponential(1); // &#39;1.0e+1&#39;
+</code></pre>
+<ol start="4">
+<li>toPrecision()<br> 个人感觉意义不大，接受一个参数，返回指定位数的字符串格式</li>
+</ol>
+<hr>
+<h3 id="5-6-3-String-类型"><a href="#5-6-3-String-类型" class="headerlink" title="5.6.3 String 类型"></a>5.6.3 String 类型</h3><p>每个String类型的实例都有length属性，返回字符串的字符数量<br><code>值得注意的是，即使字符串中包含双字节字符（不是占一个字节的ASCII字符），每个字符仍然算是一个字符</code></p>
+<ol>
+<li>字符方法<br> <code>两个用于访问字符串中特定字符的方法是：charAt()和charCodeAt()
+ 两个方法都接受一个参数,基于0的字符位置</code></li>
+</ol>
+<pre><code class="javascript">    const str = &#39;hello world&#39;;
+
+    // charAt
+    str.charAt(1); // &#39;e&#39;
+
+    // charCodeAt
+    str.charCodeAt(1); // &#39;101&#39;  (101是e的字符编码)</code></pre>
+<p><code>也可以通过下标访问：str[0]</code></p>
+<ol start="2">
+<li>字符串操作方法</li>
+</ol>
+<ul>
+<li>concat()<br>  <code>用于将一或多个字符串拼接起来，可以接受任意多个参数</code></li>
+<li>slice()<br>  <code>接受一或两个参数用于确定分割字符串的开始和结尾</code></li>
+<li>substr()<br>  <code>接受一或两个参数用于确定分割字符串的开始和返回的个数</code></li>
+<li>substring()<br>  <code>接受一或两个参数用于确定分割字符串的开始和结尾</code></li>
+</ul>
+<pre><code class="javascript">    // concat 
+    const str1 = &#39;hello &#39;;
+    const result = str1.concat(&#39;hhh&#39;,&#39; world&#39;);
+    console.log(result); // &#39;hello hhh world&#39; 
+
+    // slice substr sbustring
+    const str2 = &#39;hello world&#39;;
+    console.log(str2.slice(2, 4)); // &#39;ll&#39;
+    console.log(str2.substr(2, 4)); // &#39;llo &#39;
+    console.log(str2.substring(2, 4)); // &#39;ll&#39;</code></pre>
+<p><code>在这里多提一句，连接字符串还是建议使用es6的$来拼接</code></p>
+<ol start="3">
+<li>字符串位置方法</li>
+</ol>
+<ul>
+<li><p>indexOf(‘son str’, begin)<br><code>返回子字符串位置, 正序搜索，第二个参数指定开始位置</code></p>
+</li>
+<li><p>lastIndexOf(‘son str’, begin)<br><code>返回子字符串位置， 倒序搜索，第二个参数指定开始位置</code></p>
+</li>
+</ul>
+<ol start="4">
+<li>trim() 方法<br><code>删除字符串前后空格</code></li>
+</ol>
+<p><em>还有 trimLeft() 和 trimRight() 方法</em></p>
+<ol start="5">
+<li>字符串大小写转换方法</li>
+</ol>
+<ul>
+<li><p>toUpperCase()<br><code>转化成大写</code></p>
+</li>
+<li><p>toLowerCase()<br><code>转化成小写</code></p>
+</li>
+</ul>
+<p><em>另外，toLocalUpperCase() 和 toLocalLowerCase() 个人感觉没什么用</em></p>
+<ol start="6">
+<li>字符串的模式匹配方法</li>
+</ol>
+<ul>
+<li><p>match( patton )<br><code>patton支持正则表达式或RegExp对象，本质与调用RegExp的exec()方法无异</code><br><code>match方法返回一个满足匹配规则的字符数组</code></p>
+</li>
+<li><p>search()<br><code>接受一个参数，可以是字符串或者RegExp</code><br><code>返回第一个匹配项的索引，没有找到则返回-1</code></p>
+</li>
+<li><p>replace()<br>建议查看 <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/String/replace" target="_blank" rel="noopener">MDN-replace( )</a></p>
+</li>
+</ul>
+<ol start="7">
+<li>localeCompare()<br><code>比较两个字符串，直接上例子</code></li>
+</ol>
+<pre><code class="javascript">    const str1 = &#39;yellow&#39;;
+
+    // 比较字符串时是逐个比较过去
+    console.log(str1.localeCompare(&#39;black&#39;)); // 1   
+    console.log(str1.localeCompare(&#39;yellow&#39;)); // 0   
+    console.log(str1.localeCompare(&#39;zoo&#39;)); // -1   </code></pre>
+<ol start="8">
+<li>fromCharCode()<br><code>接收一或多个字符串编码，然后将他们转化成字符串</code></li>
+</ol>
+<pre><code class="javascript">    console.log(String.fromCharCode(104, 101, 108, 108, 111)); // ‘hello’</code></pre>
+<ol start="9">
+<li>HTML方法<br><code>javascript动态格式化，但如此创建的标签，一般都无法表述语义，尽量不使用</code></li>
+</ol>
+<hr>
+
       
     </div>
     
@@ -632,7 +779,7 @@ property是保存所有的实例方法，诸如toString()等...
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#chapter-5"><span class="nav-text">chapter 5</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#5-5-Function类型"><span class="nav-text">5.5 Function类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-5-1-没有重载（深入理解）"><span class="nav-text">5.5.1 没有重载（深入理解）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-5-2-函数声明与函数表达式"><span class="nav-text">5.5.2 函数声明与函数表达式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-5-3-作为值的函数"><span class="nav-text">5.5.3 作为值的函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-5-4函数内部属性"><span class="nav-text">5.5.4函数内部属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-5-5-函数属性的方法"><span class="nav-text">5.5.5 函数属性的方法</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#chapter-5"><span class="nav-text">chapter 5</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#5-5-Function类型"><span class="nav-text">5.5 Function类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-5-1-没有重载（深入理解）"><span class="nav-text">5.5.1 没有重载（深入理解）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-5-2-函数声明与函数表达式"><span class="nav-text">5.5.2 函数声明与函数表达式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-5-3-作为值的函数"><span class="nav-text">5.5.3 作为值的函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-5-4函数内部属性"><span class="nav-text">5.5.4函数内部属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-5-5-函数属性的方法"><span class="nav-text">5.5.5 函数属性的方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-6-基本包装类型"><span class="nav-text">5.6 基本包装类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-6-1-Boolean"><span class="nav-text">5.6.1 Boolean</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-6-2-Number-类型"><span class="nav-text">5.6.2 Number 类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-6-3-String-类型"><span class="nav-text">5.6.3 String 类型</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
