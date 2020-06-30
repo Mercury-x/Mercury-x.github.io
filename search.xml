@@ -8,7 +8,7 @@
       <link href="/2020/06/30/vue-elementUI%E5%AE%9E%E7%8E%B0%E7%AE%80%E5%8D%95%E7%9A%84%E9%97%AE%E5%8D%B7/"/>
       <url>/2020/06/30/vue-elementUI%E5%AE%9E%E7%8E%B0%E7%AE%80%E5%8D%95%E7%9A%84%E9%97%AE%E5%8D%B7/</url>
       
-        <content type="html"><![CDATA[<h2 id="实现思路"><a href="#实现思路" class="headerlink" title="实现思路"></a>实现思路</h2><p>最近参加比赛的一个题目需要实现问卷功能，于是我就开始闷头搞了hhh，功能比较简陋，只实现了问卷发布填写结果预览这三个功能</p><p>先看一下几个主要的界面：</p><ul><li>创建问卷<br><img src="//localhost:4000/2020/06/30/vue-elementUI%E5%AE%9E%E7%8E%B0%E7%AE%80%E5%8D%95%E7%9A%84%E9%97%AE%E5%8D%B7/qs_cr.png" alt="创建问卷"></li></ul><hr><h2 id="问卷功能"><a href="#问卷功能" class="headerlink" title="问卷功能"></a>问卷功能</h2><h3 id="创建问卷"><a href="#创建问卷" class="headerlink" title="创建问卷"></a>创建问卷</h3><h3 id="填写问卷"><a href="#填写问卷" class="headerlink" title="填写问卷"></a>填写问卷</h3><h3 id="问卷结果查看"><a href="#问卷结果查看" class="headerlink" title="问卷结果查看"></a>问卷结果查看</h3>]]></content>
+        <content type="html"><![CDATA[<h2 id="实现思路"><a href="#实现思路" class="headerlink" title="实现思路"></a>实现思路</h2><p>最近参加比赛的一个题目需要实现问卷功能，于是我就开始闷头搞了hhh，功能比较简陋，只实现了问卷发布填写结果预览这三个功能</p><p>先看一下几个主要的界面：</p><ul><li>创建问卷<br><img src="//yoursite.com/2020/06/30/vue-elementUI%E5%AE%9E%E7%8E%B0%E7%AE%80%E5%8D%95%E7%9A%84%E9%97%AE%E5%8D%B7/qs_cr.png" alt="创建问卷"></li></ul><hr><h2 id="问卷功能"><a href="#问卷功能" class="headerlink" title="问卷功能"></a>问卷功能</h2><h3 id="创建问卷"><a href="#创建问卷" class="headerlink" title="创建问卷"></a>创建问卷</h3><h3 id="填写问卷"><a href="#填写问卷" class="headerlink" title="填写问卷"></a>填写问卷</h3><h3 id="问卷结果查看"><a href="#问卷结果查看" class="headerlink" title="问卷结果查看"></a>问卷结果查看</h3>]]></content>
       
       
       
